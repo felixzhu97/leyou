@@ -1,0 +1,55 @@
+@startuml ER图
+' 设置方向为从左到右
+left to right direction
+' 隐藏外键箭头
+hide foreign-key
+
+' 定义实体
+entity "用户表(tb_user)" as user {
+  *id : bigint <<PK>>
+  --
+  username : varchar(32)
+  password : varchar(32)
+  phone : varchar(11)
+  created : datetime
+}
+
+entity "商品表(tb_item)" as item {
+  *id : bigint <<PK>>
+  --
+  title : varchar(100)
+  price : decimal(10,2)
+  stock : int
+  category_id : bigint
+}
+
+entity "订单表(tb_order)" as order {
+  *order_id : bigint <<PK>>
+  --
+  total_pay : decimal(10,2)
+  user_id : bigint
+  status : int
+  create_time : datetime
+}
+
+' 定义关系
+user ||--o{ order : "拥有"
+item }o--|| order : "包含"
+
+' 添加注释
+note right of user
+  存储用户基本信息
+  包含用户名、密码、手机号等
+end note
+
+note left of item
+  存储商品信息
+  包含价格、库存等
+end note
+
+note bottom of order
+  存储订单信息
+  包含总金额、状态等
+end note
+
+@enduml

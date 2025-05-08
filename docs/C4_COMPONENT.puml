@@ -1,0 +1,21 @@
+@startuml C4组件图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title 用户服务组件图
+
+Container(user_service, "用户服务", "Spring Boot", "提供用户管理功能")
+
+Component(web, "UserController", "Spring MVC", "处理HTTP请求")
+Component(service, "UserService", "Spring", "业务逻辑处理")
+Component(repository, "UserRepository", "JPA", "数据访问")
+Component(auth, "AuthService", "Spring Security", "认证授权")
+
+ContainerDb(db, "MySQL", "关系型数据库", "存储用户数据")
+
+Rel(web, service, "调用")
+Rel(service, repository, "调用") 
+Rel(service, auth, "调用")
+Rel(repository, db, "读写")
+Rel(auth, db, "读写")
+
+@enduml

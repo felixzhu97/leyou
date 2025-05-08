@@ -1,0 +1,31 @@
+@startuml C4架构图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title 乐优商城系统架构 (C4模型)
+
+Person(user, "用户", "使用乐优商城系统的终端用户")
+
+System_Boundary(leyou, "乐优商城") {
+    Container(web, "Web前端", "Vue.js", "提供用户界面")
+    Container(gateway, "API网关", "Spring Cloud Gateway", "路由和鉴权")
+    
+    Container(user_service, "用户服务", "Spring Boot", "用户管理")
+    Container(item_service, "商品服务", "Spring Boot", "商品管理") 
+    Container(order_service, "订单服务", "Spring Boot", "订单管理")
+    
+    ContainerDb(mysql, "MySQL", "关系型数据库", "存储业务数据")
+    ContainerDb(redis, "Redis", "缓存", "存储会话和缓存数据")
+}
+
+Rel(user, web, "使用")
+Rel(web, gateway, "API调用")
+Rel(gateway, user_service, "调用")
+Rel(gateway, item_service, "调用")
+Rel(gateway, order_service, "调用")
+
+Rel(user_service, mysql, "读写")
+Rel(item_service, mysql, "读写") 
+Rel(order_service, mysql, "读写")
+Rel(user_service, redis, "读写会话数据")
+
+@enduml

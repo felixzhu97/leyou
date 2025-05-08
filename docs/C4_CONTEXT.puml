@@ -1,0 +1,19 @@
+@startuml C4上下文图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title 乐优商城系统上下文图
+
+Person(user, "用户", "使用乐优商城系统的终端用户")
+Person(admin, "管理员", "管理系统后台的管理员")
+
+System(leyou, "乐优商城系统", "提供电商购物服务")
+
+System_Ext(payment, "支付系统", "第三方支付平台")
+System_Ext(sms, "短信服务", "第三方短信平台")
+
+Rel(user, leyou, "使用")
+Rel(admin, leyou, "管理")
+Rel(leyou, payment, "调用支付接口")
+Rel(leyou, sms, "发送短信通知")
+
+@enduml
