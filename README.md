@@ -4,11 +4,12 @@
 
 乐优商城是一个基于 Spring Cloud 的分布式电商系统，包含用户服务、商品服务、订单服务等核心模块。
 
-## 提示
+## 配套系统
 
-仓库中有配套项目
-https://github.com/felixzhu97/leyou-portal   门户网站
-https://github.com/felixzhu97/leyou-manage-web   后台管理系统
+#### 门户网站
+https://github.com/felixzhu97/leyou-portal
+#### 后台管理系统
+https://github.com/felixzhu97/leyou-manage-web
 
 ## 功能特性
 
